@@ -1,6 +1,7 @@
 #![no_main]
 #![no_std]
 #![allow(unused_imports)]
+#![allow(dead_code)]
 
 #[cfg(any(target_os = "zkvm", doc))]
 use risc0_zkvm::guest::env;
@@ -28,10 +29,13 @@ pub fn main() {
     // let _product = is_bounded(&[a, b]);//.expect("Integer overflow");
 }
 
-pub fn is_bounded(_arr: &[(f32, f32)]) -> bool {
-    // return !arr.any()
-    // arr.forEach(point => {
-
-    // })
+pub fn is_bounded(arr: &[(f32, f32)]) -> bool {
+    for point in arr.iter() {
+        let radius_squared: f32 = point.0 * point.0 + point.1 * point.1;
+        if radius_squared >= 1. {
+            return false;
+        }
+    }
+    
     return true;
 }
