@@ -2,8 +2,9 @@
 #![no_std]
 #![allow(unused_imports)]
 
+#[cfg(any(target_os = "zkvm", doc))]
 use risc0_zkvm::guest::env;
-
+#[cfg(any(target_os = "zkvm", doc))]
 risc0_zkvm::guest::entry!(main);
 
 /*
